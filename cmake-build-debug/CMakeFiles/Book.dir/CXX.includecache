@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/alan/Documents/Projects/Book/api.h
+iostream
+-
+fstream
+-
+string
+-
+cstdio
+-
+cstdlib
+-
+
+/Users/alan/Documents/Projects/Book/book.h
+api.h
+/Users/alan/Documents/Projects/Book/api.h
+
+/Users/alan/Documents/Projects/Book/main.cpp
+book.h
+/Users/alan/Documents/Projects/Book/book.h
+api.h
+/Users/alan/Documents/Projects/Book/api.h
+
