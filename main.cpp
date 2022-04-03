@@ -12,7 +12,7 @@ int main(int argc,const char * argv[]) {
         if(argc==1)
             str_argv=argv[0];
         if(argc==0)
-            str_argv=NORMAL_ARGV;
+            str_argv=NORMAL;
         find_way(str_argv);
     }
     else {
