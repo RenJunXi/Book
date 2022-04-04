@@ -17,10 +17,8 @@ inline void __reset()
 {
     output(".book_config","book1");
 }
-inline void __set()
+inline void __set(string & set_str)
 {
-    string set_str;
-    cin>>set_str;
     output(get_now_book(),set_str);
     cout<<"Book: "<<set_str<<" has been seted."<<endl;
 }
@@ -36,17 +34,22 @@ inline void __open()
     system(shell_command.c_str());
     cout<<"Book: "<<get_now_book()<<" has been opened."<<endl;
 }
-inline void __flag()
+inline void __flag(string & other_argv)
 {
-    string other_flag;
-    cin>>other_flag;
-    ifstream ch_flag;
-    ch_flag.open(other_flag,ios::in|ios::out);
+    fstream ch_flag;
+    ch_flag.open(other_flag,ios::in);
+    if(ch_flag.is_open())
+        ch_flag.close();
+    else
+    {
+        ch_flag.close();
+        ch_flag.open(other_flag,ios::out);
+    }
     if(!ch_flag.is_open())
     {
         cerr<<"Reset Flag Error";
         exit(RESET_FLAG_ERR);
-    };
+    }
     output(".book_config",other_flag);
     cout<<"Book "<<other_flag<<" has been the flag."<<endl;
 }
@@ -56,20 +59,23 @@ inline void __normal()
         __set();
 }
 
-void find_way(string & argv)
+void find_way(string & argv,string & final_argv)
 {
     if(argv==NORMAL){
         __normal();
     }else if(argv==RESET){
         __reset();
     }else if (argv==SET_BOOK){
-        __set();
+        __set(final_argv);
     }else if (argv==CAT_BOOK){
         __cat();
     }else if (argv==OPEN){
         __open();
     }else if (argv==FLAG){
-        __flag();
+        __flag(final_argv);
+    }else{
+        cerr<<"Bad Arg Error";
+        exit(BAD_ARG_ERR);
     }
 }
 

@@ -11,9 +11,10 @@
 #include <cstdio>
 #include <cstdlib>
 #define ARG_ERR 1
-#define FILE_IN_ERR 2
-#define FILE_OUT_ERR 3
-#define RESET_FLAG_ERR 4
+#define BAD_ARG_ERR 2
+#define FILE_IN_ERR 3
+#define FILE_OUT_ERR 4
+#define RESET_FLAG_ERR 5
 #define NORMAL "normal"
 #define RESET "reset"
 #define SET_BOOK "set"
@@ -45,13 +46,13 @@ ofstream _ostream(const string & open_name)
     }
     return _return;
 }
-void input(string open_name,string & input_str)
+void input(const string & open_name,string & input_str)
 {
     ifstream stream=_istream(open_name);
     stream>>input_str;
     stream.close();
 }
-void output(string open_name,string output_str)
+void output(const string & open_name,const string & output_str)
 {
     ofstream stream=_ostream(open_name);
     stream<<output_str;
