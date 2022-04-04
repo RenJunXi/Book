@@ -1,4 +1,3 @@
-#define LOCAL_DEBUG
 #include "book.h"
 #include "api.h"
 using namespace std;
