@@ -20,7 +20,7 @@ inline void __reset()
 inline void __set(string & set_str)
 {
     output(get_now_book(),set_str);
-    cout<<"Book: "<<set_str<<" has been seted."<<endl;
+    cout<<"Book: "<<set_str<<" has been seted on "<<get_now_book()<<"."<<endl;
 }
 inline void __cat()
 {
@@ -32,31 +32,35 @@ inline void __open()
 {
     string shell_command=SHELL_ONE+get_now_book()+SHELL_TWO;
     system(shell_command.c_str());
-    cout<<"Book: "<<get_now_book()<<" has been opened."<<endl;
+    cout<<"Book: "<<get_now_book()<<" on "<<get_now_book()<<" has been opened."<<endl;
 }
-inline void __flag(string & other_argv)
+inline void __flag(string other_argv)
 {
+    other_argv+=".book";
     fstream ch_flag;
-    ch_flag.open(other_flag,ios::in);
+    ch_flag.open(other_argv,ios::in);
     if(ch_flag.is_open())
         ch_flag.close();
     else
     {
         ch_flag.close();
-        ch_flag.open(other_flag,ios::out);
+        ch_flag.open(other_argv,ios::out);
     }
     if(!ch_flag.is_open())
     {
-        cerr<<"Reset Flag Error";
+        cerr<<"Error:Reset Flag Error";
         exit(RESET_FLAG_ERR);
     }
-    output(".book_config",other_flag);
-    cout<<"Book "<<other_flag<<" has been the flag."<<endl;
+    output(".book_config",other_argv);
+    cout<<"Book "<<other_argv<<" has been the flag."<<endl;
 }
-inline void __normal()
+void __normal()
 {
-    while(true)
-        __set();
+    string argv;
+    while(true) {
+        cin>>argv;
+        __set(argv);
+    }
 }
 
 void find_way(string & argv,string & final_argv)

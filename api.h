@@ -15,12 +15,14 @@
 #define FILE_IN_ERR 3
 #define FILE_OUT_ERR 4
 #define RESET_FLAG_ERR 5
+#define DEBUG_END 6
 #define NORMAL "normal"
 #define RESET "reset"
 #define SET_BOOK "set"
 #define CAT_BOOK "cat"
 #define OPEN "open"
 #define FLAG "flag"
+#define QUIT "quit"
 #define SHELL_ONE string("open $(cat ")
 #define SHELL_TWO string(")")
 using namespace std;
@@ -30,7 +32,7 @@ ifstream _istream(const string & open_name)
     _return.open(open_name);
     if(!_return.is_open())
     {
-        cerr<<"File Input Error";
+        cerr<<"Error:File Input Error.\nError File: "<<open_name;
         exit(FILE_IN_ERR);
     }
     return _return;
@@ -41,7 +43,7 @@ ofstream _ostream(const string & open_name)
     _return.open(open_name,ios::trunc|ios::out);
     if(!_return.is_open())
     {
-        cerr<<"File Output Error";
+        cerr<<"File Output Error\nError File: "<<open_name;
         exit(FILE_OUT_ERR);
     }
     return _return;
