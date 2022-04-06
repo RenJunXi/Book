@@ -59,9 +59,16 @@ void __normal()
     string argv;
     while(true) {
         cin>>argv;
+        if(argv==QUIT)
+            exit(0);
         __set(argv);
     }
 }
+//TODO:UPDATE
+/* void __update()
+{
+
+}*/
 
 void find_way(string & argv,string & final_argv)
 {
